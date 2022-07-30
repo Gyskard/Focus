@@ -1,0 +1,22 @@
+services:
+  db:
+    container_name: db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: focus
+  api:
+    container_name: api
+    build: ./back/api
+  client:
+    container_name: client
+    build: ./front
+  reverse_proxy:
+    container_name: reverse_proxy
+    image: nginx
+    ports:
+      - 4000:80
+    volumes:
+      - ./back/reverse_proxy/nginx.prod.conf:/etc/nginx/nginx.conf

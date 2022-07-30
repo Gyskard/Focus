@@ -1,0 +1,22 @@
+services:
+  db:
+    container_name: db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: focus
+    ports:
+      - 4002:5432
+  db_manager:
+    container_name: db_manager
+    image: adminer
+    restart: always
+  reverse_proxy:
+    container_name: reverse_proxy
+    image: nginx
+    ports:
+      - 4000:80
+    volumes:
+      - ./back/reverse_proxy/nginx.dev.conf:/etc/nginx/nginx.conf
