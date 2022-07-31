@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import sequelize from '../../../modules/db/connection';
+import sequelize from '../../../modules/db/create_connector';
 
 describe('Database connection', () => {
   it('should return true when it is connected to the database', async () => {
