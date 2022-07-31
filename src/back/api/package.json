@@ -2,7 +2,8 @@
   "scripts": {
     "build": "tsc -p .",
     "dev": "nodemon app.ts",
-    "code_quality": "eslint app.ts ./modules/*/*.ts",
+    "code_quality": "eslint app.ts ./modules/*/*.ts ./tests/unit/*/*.ts",
+    "code_quality_fix": "eslint app.ts ./modules/*/*.ts ./tests/unit/*/*.ts --fix",
     "unit_test": "mocha ./tests/unit/*/* --require ts-node/register"
   },
   "dependencies": {
