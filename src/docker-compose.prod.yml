@@ -1,4 +1,14 @@
 services:
+  reverse_proxy:
+    container_name: reverse_proxy
+    image: nginx
+    ports:
+      - 4000:80
+    volumes:
+      - ./back/reverse_proxy/nginx.prod.conf:/etc/nginx/nginx.conf
+  client:
+    container_name: client
+    build: ./front
   db:
     container_name: db
     image: postgres
@@ -10,13 +20,6 @@ services:
   api:
     container_name: api
     build: ./back/api
-  client:
-    container_name: client
-    build: ./front
-  reverse_proxy:
-    container_name: reverse_proxy
-    image: nginx
-    ports:
-      - 4000:80
-    volumes:
-      - ./back/reverse_proxy/nginx.prod.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - db
+    restart: always

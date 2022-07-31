@@ -8,7 +8,7 @@ COPY package.json .
 COPY package-lock.json .
 
 RUN npm install --silent --only=production
-RUN npm install pm2 -g
+RUN npm install -g pm2
 
 COPY . .
 

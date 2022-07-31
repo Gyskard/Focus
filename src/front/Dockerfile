@@ -1,5 +1,7 @@
 FROM node:alpine3.16
 
+ENV DISABLE_ESLINT_PLUGIN=true
+
 WORKDIR /app
 
 COPY package.json .
