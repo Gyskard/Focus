@@ -5,17 +5,16 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "workflow_test" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "workflow_test" ]
+    branches: [ "main" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./src/front/
-
+    defaults:
+      run:
+        working-directory: ./src/front/
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
