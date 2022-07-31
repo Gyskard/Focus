@@ -2,7 +2,8 @@
   "scripts": {
     "build": "tsc -p .",
     "dev": "nodemon app.ts",
-    "code_quality": "eslint app.ts ./modules/*/*.ts"
+    "code_quality": "eslint app.ts ./modules/*/*.ts",
+    "unit_test": "mocha ./tests/unit/*/* --require ts-node/register"
   },
   "dependencies": {
     "express": "^4.18.1",
@@ -13,6 +14,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "@types/mocha": "^9.1.1",
     "@types/sequelize": "^4.28.14",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
@@ -22,6 +24,7 @@
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
+    "mocha": "^10.0.0",
     "nodemon": "^2.0.19",
     "ts-node": "^10.9.1"
   }
