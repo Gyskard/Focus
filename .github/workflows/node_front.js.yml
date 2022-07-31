@@ -23,7 +23,8 @@ jobs:
         node-version: '16'
         cache: 'npm'
         cache-dependency-path: './src/front'
-    - run: cd ./src/front && npm ci
+    - working-directory: ./src/front
+    - run: npm ci
     - run: npm run build --if-present
     - run: npm run unit_test
     - run: npm run code_quality
