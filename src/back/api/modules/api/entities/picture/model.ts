@@ -4,17 +4,13 @@ import {
   Table, Column, Model, AllowNull, ForeignKey, BelongsTo,
 } from 'sequelize-typescript';
 
-import Event from './event.model';
+import Event from '../event/model';
 
 @Table
-export default class File extends Model {
+export default class Picture extends Model {
   @AllowNull(false)
   @Column
     storage_id: string;
-
-  @AllowNull(false)
-  @Column
-    name: string;
 
   @ForeignKey(() => Event)
   @Column

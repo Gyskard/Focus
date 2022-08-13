@@ -4,9 +4,9 @@ import {
   Table, Column, Model, DataType, AllowNull, HasMany,
 } from 'sequelize-typescript';
 
-import Picture from './picture.model';
-import File from './file.model';
-import Person from './person.model';
+import Picture from '../picture/model';
+import File from '../file/model';
+import Person from '../person/model';
 
 @Table
 export default class Event extends Model {

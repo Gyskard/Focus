@@ -4,8 +4,8 @@ import {
   Table, Column, Model, AllowNull, ForeignKey, BelongsToMany,
 } from 'sequelize-typescript';
 
-import Event from './event.model';
-import EventPerson from './event_person.model';
+import Event from '../event/model';
+import EventPerson from '../event_person/model';
 
 @Table
 export default class Person extends Model {
