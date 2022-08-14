@@ -2,7 +2,7 @@
   "scripts": {
     "build": "tsc -p .",
     "dev": "nodemon app.ts",
-    "code_quality": "eslint app.ts ./modules/*/*/*/* ./tests/unit/*/*.ts",
+    "code_quality": "eslint app.ts ./module/*/*/*",
     "code_quality_fix": "eslint app.ts ./module/*/*/* --fix"
   },
   "dependencies": {
