@@ -4,16 +4,19 @@ import {
   Table, Column, Model, ForeignKey,
 } from 'sequelize-typescript';
 
-import Event from '../event/model';
-import Person from '../person/model';
+import Event from './event.model';
+import Person from './person.model';
 
-@Table
+@Table({
+  timestamps: false,
+  freezeTableName: true,
+})
 export default class EventPerson extends Model {
   @ForeignKey(() => Event)
   @Column
-    eventId: number;
+    event_id: number;
 
   @ForeignKey(() => Person)
   @Column
-    personId: number;
+    person_id: number;
 }

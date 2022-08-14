@@ -1,10 +1,10 @@
 import { Sequelize } from 'sequelize-typescript';
 
-import Person from '../api/entities/person/model';
-import Event from '../api/entities/event/model';
-import File from '../api/entities/file/model';
-import Picture from '../api/entities/picture/model';
-import EventPerson from '../api/entities/event_person/model';
+import Person from '../api/model/person.model';
+import Event from '../api/model/event.model';
+import File from '../api/model/file.model';
+import Picture from '../api/model/picture.model';
+import EventPerson from '../api/model/event_person.model';
 
 const sequelize: Sequelize = new Sequelize('focus', 'admin', 'admin', {
   host: process.env.ENV === 'prod' ? 'db' : 'localhost',

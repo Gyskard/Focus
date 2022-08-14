@@ -1,14 +1,18 @@
 /* eslint-disable import/no-cycle */
 
 import {
-  Table, Column, Model, DataType, AllowNull, HasMany,
+  Table, Column, Model, DataType, AllowNull, HasMany, BelongsToMany,
 } from 'sequelize-typescript';
 
-import Picture from '../picture/model';
-import File from '../file/model';
-import Person from '../person/model';
+import Picture from './picture.model';
+import File from './file.model';
+import Person from './person.model';
+import EventPerson from './event_person.model';
 
-@Table
+@Table({
+  timestamps: false,
+  freezeTableName: true,
+})
 export default class Event extends Model {
   @AllowNull(false)
   @Column
@@ -31,6 +35,6 @@ export default class Event extends Model {
   @HasMany(() => File)
     files: File[];
 
-  @HasMany(() => Person)
-    persons: Person[];
+  @BelongsToMany(() => Person, () => EventPerson)
+    events: Event[];
 }

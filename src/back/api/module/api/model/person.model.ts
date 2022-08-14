@@ -1,13 +1,16 @@
 /* eslint-disable import/no-cycle */
 
 import {
-  Table, Column, Model, AllowNull, ForeignKey, BelongsToMany,
+  Table, Column, Model, AllowNull, BelongsToMany,
 } from 'sequelize-typescript';
 
-import Event from '../event/model';
-import EventPerson from '../event_person/model';
+import Event from './event.model';
+import EventPerson from './event_person.model';
 
-@Table
+@Table({
+  timestamps: false,
+  freezeTableName: true,
+})
 export default class Person extends Model {
   @AllowNull(false)
   @Column
@@ -16,10 +19,6 @@ export default class Person extends Model {
   @AllowNull(false)
   @Column
     last_name: string;
-
-  @ForeignKey(() => Event)
-  @Column
-    eventId: number;
 
   @BelongsToMany(() => Event, () => EventPerson)
     events: Event[];
