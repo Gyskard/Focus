@@ -6,7 +6,8 @@ import express, {
 
 import sequelize from './module/db/create_connector';
 
-import { createPerson } from './module/api/repository/person.repository';
+import createPerson from './module/api/repository/person.repository';
+
 
 const app: Application = express();
 
@@ -21,11 +22,13 @@ app.use((err: SyntaxError, req: Request, res: Response, next: NextFunction) => {
 const port: number = 4001;
 const prefix: string = '/api';
 
-sequelize.authenticate(); // connect with database
-sequelize.sync(); // sync models with database tables
-
-app.get(`${prefix}/`, (req: Request, res: Response) => res.sendStatus(200));
-
-app.put(`${prefix}/person`, (req: Request, res: Response) => createPerson(req, res));
-
-app.listen(port, () => console.log(`API is listening on port ${port}`)); // eslint-disable-line no-console
+(async () => {
+  await sequelize.authenticate(); // connect with database
+  await sequelize.sync(); // sync models with database tables
+  
+  app.get(`${prefix}/`, (req: Request, res: Response) => res.sendStatus(200));
+  
+  app.put(`${prefix}/person`, (req: Request, res: Response) => createPerson(req, res));
+  
+  app.listen(port, () => console.log(`API is listening on port ${port}`)); // eslint-disable-line no-console
+})();

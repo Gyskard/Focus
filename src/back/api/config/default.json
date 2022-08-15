@@ -1,0 +1,16 @@
+{
+    "dbConfig": {
+        "dev": {
+            "host": "localhost",
+            "port": 4002
+        },
+        "test": {
+            "host": "localhost",
+            "port": 4050
+        },
+        "prod": {
+            "host": "db",
+            "port": 5432
+        }
+    }
+}
