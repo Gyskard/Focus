@@ -30,9 +30,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const config_1 = __importDefault(require("config"));
 const dotenv = __importStar(require("dotenv"));
-dotenv.config();
 const create_connector_1 = __importDefault(require("./module/db/create_connector"));
 const person_repository_1 = __importDefault(require("./module/api/repository/person.repository"));
+dotenv.config();
 const dbConfig = config_1.default.get('portConfig');
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); // parse application/json
