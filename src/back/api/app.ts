@@ -4,16 +4,17 @@ import express, {
   Application, Request, Response, NextFunction,
 } from 'express';
 
-import config from 'config'
+import config from 'config';
 
-import * as dotenv from 'dotenv'
-dotenv.config()
+import * as dotenv from 'dotenv';
 
 import sequelize from './module/db/create_connector';
 
 import createPerson from './module/api/repository/person.repository';
 
-const dbConfig: { default: number, test: number} = config.get('portConfig')
+dotenv.config();
+
+const dbConfig: { default: number, test: number } = config.get('portConfig');
 
 const app: Application = express();
 
