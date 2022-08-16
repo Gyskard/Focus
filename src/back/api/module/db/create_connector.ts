@@ -4,8 +4,6 @@ import config from 'config'
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-console.log(process.env.ENV)
-
 import Person from '../api/model/person.model';
 import Event from '../api/model/event.model';
 import File from '../api/model/file.model';

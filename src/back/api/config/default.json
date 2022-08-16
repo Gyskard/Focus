@@ -12,5 +12,9 @@
             "host": "db",
             "port": 5432
         }
+    },
+    "portConfig": {
+        "default": 4001,
+        "test": 4051
     }
 }
