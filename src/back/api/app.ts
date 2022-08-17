@@ -10,7 +10,7 @@ import * as dotenv from 'dotenv';
 
 import sequelize from './module/db/create_connector';
 
-import createPerson from './module/api/repository/person.repository';
+import { createPerson, updatePerson } from './module/api/repository/person.repository';
 
 dotenv.config();
 
@@ -36,6 +36,8 @@ const prefix: string = '/api';
   app.get(`${prefix}/`, (req: Request, res: Response) => res.sendStatus(200));
 
   app.put(`${prefix}/person`, (req: Request, res: Response) => createPerson(req, res));
+
+  app.put(`${prefix}/person/:name`, (req: Request, res: Response) => updatePerson(req, res));
 
   app.listen(port, () => console.log(`API is listening on port ${port}`)); // eslint-disable-line no-console
 })();

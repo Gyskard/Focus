@@ -31,7 +31,7 @@ const express_1 = __importDefault(require("express"));
 const config_1 = __importDefault(require("config"));
 const dotenv = __importStar(require("dotenv"));
 const create_connector_1 = __importDefault(require("./module/db/create_connector"));
-const person_repository_1 = __importDefault(require("./module/api/repository/person.repository"));
+const person_repository_1 = require("./module/api/repository/person.repository");
 dotenv.config();
 const dbConfig = config_1.default.get('portConfig');
 const app = (0, express_1.default)();
@@ -48,6 +48,7 @@ const prefix = '/api';
     await create_connector_1.default.authenticate(); // connect with database
     await create_connector_1.default.sync(); // sync models with database tables
     app.get(`${prefix}/`, (req, res) => res.sendStatus(200));
-    app.put(`${prefix}/person`, (req, res) => (0, person_repository_1.default)(req, res));
+    app.put(`${prefix}/person`, (req, res) => (0, person_repository_1.createPerson)(req, res));
+    app.put(`${prefix}/person/:name`, (req, res) => (0, person_repository_1.updatePerson)(req, res));
     app.listen(port, () => console.log(`API is listening on port ${port}`)); // eslint-disable-line no-console
 })();

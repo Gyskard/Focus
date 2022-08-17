@@ -49,6 +49,9 @@ CREATE TABLE "public"."Person" (
 INSERT INTO "Person" ("id", "first_name", "last_name") VALUES
 (1,	'John',	'Doe');
 
+INSERT INTO "Person" ("id", "first_name", "last_name") VALUES
+(2,	'Isaac', 'Asimov');
+
 DROP TABLE IF EXISTS "Picture";
 DROP SEQUENCE IF EXISTS "Picture_id_seq";
 CREATE SEQUENCE "Picture_id_seq" START 100;
