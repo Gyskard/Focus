@@ -52,6 +52,9 @@ INSERT INTO "Person" ("id", "first_name", "last_name") VALUES
 INSERT INTO "Person" ("id", "first_name", "last_name") VALUES
 (2,	'Isaac', 'Asimov');
 
+INSERT INTO "Person" ("id", "first_name", "last_name") VALUES
+(3,	'Peter', 'Amilton');
+
 DROP TABLE IF EXISTS "Picture";
 DROP SEQUENCE IF EXISTS "Picture_id_seq";
 CREATE SEQUENCE "Picture_id_seq" START 100;
