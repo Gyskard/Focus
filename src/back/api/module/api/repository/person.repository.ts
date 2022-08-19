@@ -8,8 +8,9 @@ type ParamsCreateUser = {
 };
 
 type ParamsUpdateUser = ParamsCreateUser & {
-  new_first_name: string,
-  new_last_name: string
+  id: number,
+  first_name: string,
+  last_name: string
 };
 
 async function createPerson(req: Request, res: Response): Promise<Response> {
@@ -33,37 +34,30 @@ async function createPerson(req: Request, res: Response): Promise<Response> {
 }
 
 async function updatePerson(req: Request, res: Response): Promise<Response> {
-  if (!Object.hasOwn(req.body, 'new_first_name')) return res.status(400).send('Missing new first name parameter');
-  if (!Object.hasOwn(req.body, 'new_last_name')) return res.status(400).send('Missing new last name parameter');
-  if (typeof req.body.new_first_name !== 'string') return res.status(400).send('New first name parameter not a string');
-  if (typeof req.body.new_last_name !== 'string') return res.status(400).send('New last name parameter not a string');
-  if (req.params.name.split('+').length !== 2) return res.status(400).send('Name parameter is incorrect');
-
-  const queryString: ParamsCreateUser = { first_name: '', last_name: '' };
-  [queryString.first_name, queryString.last_name] = req.params.name.split('+');
-
-  if (queryString.first_name.length === 0) return res.status(400).send('Missing first name parameter');
-  if (queryString.last_name.length === 0) return res.status(400).send('Missing last name parameter');
+  if (!Object.hasOwn(req.body, 'first_name')) return res.status(400).send('Missing first name parameter');
+  if (!Object.hasOwn(req.body, 'last_name')) return res.status(400).send('Missing last name parameter');
+  if (typeof req.body.first_name !== 'string') return res.status(400).send('First name parameter not a string');
+  if (typeof req.body.last_name !== 'string') return res.status(400).send('Last name parameter not a string');
+  if (!Object.hasOwn(req.params, 'id')) return res.status(400).send('Missing id parameter');
 
   const params: ParamsUpdateUser = {
-    first_name: req.params.name.split('+')[0],
-    last_name: req.params.name.split('+')[1],
-    new_first_name: req.body.new_first_name,
-    new_last_name: req.body.new_last_name,
+    id: parseInt(req.params.id, 10),
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
   };
 
-  const person = await Person.findOne({
-    where: {
-      first_name: params.first_name,
-      last_name: params.last_name,
-    },
-  });
+  if (Number.isNaN(params.id)) return res.status(400).send('Person id not a number');
 
-  if (!person) return res.status(400).send('This person doesn\'t exist');
+  const person = await Person.findOne({ where: { id: params.id } });
 
-  await person.update({ first_name: params.new_first_name, last_name: params.new_last_name });
+  if (!person) return res.status(400).send('Person not found');
+
+  await person.update({ first_name: params.first_name, last_name: params.last_name });
 
   return res.sendStatus(200);
 }
+
+// async function getPerson
+// async function deletePerson
 
 export { createPerson, updatePerson };

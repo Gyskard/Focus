@@ -37,7 +37,7 @@ const prefix: string = '/api';
 
   app.put(`${prefix}/person`, (req: Request, res: Response) => createPerson(req, res));
 
-  app.put(`${prefix}/person/:name`, (req: Request, res: Response) => updatePerson(req, res));
+  app.put(`${prefix}/person/:id`, (req: Request, res: Response) => updatePerson(req, res));
 
   app.listen(port, () => console.log(`API is listening on port ${port}`)); // eslint-disable-line no-console
 })();
