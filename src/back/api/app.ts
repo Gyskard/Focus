@@ -11,6 +11,7 @@ import * as dotenv from 'dotenv';
 import sequelize from './module/db/create_connector';
 
 import { createPerson, updatePerson, getPersonId } from './module/api/repository/person.repository';
+import createEvent from './module/api/repository/event.repository';
 
 dotenv.config();
 
@@ -40,6 +41,8 @@ const prefix: string = '/api';
   app.put(`${prefix}/person/:id`, (req: Request, res: Response) => updatePerson(req, res));
 
   app.get(`${prefix}/person/id`, (req: Request, res: Response) => getPersonId(req, res));
+
+  app.put(`${prefix}/event`, (req: Request, res: Response) => createEvent(req, res));
 
   app.listen(port, () => console.log(`API is listening on port ${port}`)); // eslint-disable-line no-console
 })();
