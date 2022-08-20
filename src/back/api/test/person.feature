@@ -6,6 +6,10 @@ Given url 'http://localhost:4051/api/person'
 And request { first_name: 'Jean', last_name: 'Ballon' }
 When method put
 Then status 201
+Given url 'http://localhost:4051/api/person/id'
+And request { first_name: 'Jean', last_name: 'Ballon' }
+When method get
+Then status 200
 
 Scenario: create a already existed person with correct data
 
