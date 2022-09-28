@@ -58,7 +58,7 @@ And request { first_name: 'Arthur', last_name: 'Clark' }
 When method put
 Then status 200
 
-Scenario: update a person with incorrect id
+Scenario: update a person who doesn't exist
 
 Given url 'http://localhost:4051/api/person/999'
 And request { first_name: 'Arthur', last_name: 'Clark' }
@@ -120,7 +120,7 @@ Given url 'http://localhost:4051/api/person/id'
 And request { first_name: 'Peter', last_name: 'Hamilton' }
 When method get
 Then status 400
-Then match response == "This person doesn't exist"
+Then match response == "Person not found"
 
 Scenario: update a person with missing first name parameter
 
@@ -166,11 +166,11 @@ Scenario: get person who doesn't exist
 Given url 'http://localhost:4051/api/person/50'
 When method get
 Then status 400
-Then match response == "This person doesn't exist"
+Then match response == "Person not found"
 
 Scenario: get person with string id
 
 Given url 'http://localhost:4051/api/person/hohimark'
 When method get
 Then status 400
-Then match response == "Id parameter is not a number"
+Then match response == "Person id is not a number"
