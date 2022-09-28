@@ -73,7 +73,20 @@ async function getPersonId(req: Request, res: Response): Promise<Response> {
   return res.json({ id: person.id });
 }
 
-// async function getPerson
+async function getPerson(req: Request, res: Response): Promise<Response> {
+  if (!Object.hasOwn(req.params, 'id')) return res.status(400).send('Missing id parameter');
+
+  const personId: number = parseInt(req.params.id, 10);
+  if (!personId) return res.status(400).send('Id parameter is not a number');
+
+  const person = await Person.findOne({ where: { id: personId } });
+  if (!person) return res.status(400).send('This person doesn\'t exist');
+
+  return res.json(person);
+}
+
 // async function deletePerson
 
-export { createPerson, updatePerson, getPersonId };
+export {
+  createPerson, updatePerson, getPersonId, getPerson,
+};

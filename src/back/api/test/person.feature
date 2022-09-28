@@ -153,3 +153,24 @@ And request { first_name: 'Peter', last_name: {} }
 When method get
 Then status 400
 Then match response == 'Last name parameter not a string'
+
+Scenario: get person with correct data
+
+Given url 'http://localhost:4051/api/person/3'
+When method get
+Then status 200
+Then match response == { id: 3, first_name: 'Peter', last_name: 'Amilton' }
+
+Scenario: get person who doesn't exist
+
+Given url 'http://localhost:4051/api/person/50'
+When method get
+Then status 400
+Then match response == "This person doesn't exist"
+
+Scenario: get person with string id
+
+Given url 'http://localhost:4051/api/person/hohimark'
+When method get
+Then status 400
+Then match response == "Id parameter is not a number"
